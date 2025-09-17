@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="todostyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h2>Todo List <img src="https://cdn-icons-png.flaticon.com/512/1950/1950715.png" alt="Todo Icon"></h2>
+            
+            <div class="row">
+                <input type="text" id="task-input" placeholder="Add your task...">
+                <button id="add-button">Add</button>
+            </div>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <span class="filter active" data-filter="all">All</span>
+                    <span class="filter" data-filter="pending">Pending</span>
+                    <span class="filter" data-filter="completed">Completed</span>
+                </div>
+                <button class="clear-btn">Clear All</button>
+            </div>
+            
+            <ul id="task-list">
+                <!-- Tasks will be added here through JavaScript -->
+                <li class="task">
+                    <input type="checkbox" id="task1">
+                    <label for="task1">
+                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                        Complete the project
+                    </label>
+                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
+                </li>
+                
+                <li class="task completed">
+                    <input type="checkbox" id="task2" checked>
+                    <label for="task2">
+                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                        Read documentation
+                    </label>
+                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
+                </li>
+                
+                <li class="task">
+                    <input type="checkbox" id="task3">
+                    <label for="task3">
+                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                        Prepare presentation
+                    </label>
+                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
+                </li>
+            </ul>
+            
+            <div class="footer">
+                <span id="tasks-counter">3 tasks left</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
