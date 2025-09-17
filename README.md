@@ -19,7 +19,7 @@ A clean, intuitive Todo List web app for managing daily tasks. Built with pure H
 ## 🚀 Live Demo
 
 <!-- Replace with your actual live demo link -->
-[View the live demo](#)
+[https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png](#)
 
 ---
 
