@@ -16,18 +16,15 @@ A clean, intuitive Todo List web app for managing daily tasks. Built with pure H
 
 ---
 
-## 🚀 Live Demo
 
-<!-- Replace with your actual live demo link -->
-[https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png](#)
 
----
+
 
 ## 🖥️ Screenshots
 
 <!-- Place your screenshots in the `screenshots/` folder and reference them here -->
 <!-- Example: -->
-<!-- ![Todo List Screenshot](screenshots/screenshot1.png) -->
+<!-- ![Todo List Screenshot](https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png) -->
 
 ---
 
