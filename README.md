@@ -22,7 +22,7 @@ A clean, intuitive Todo List web app for managing daily tasks. Built with pure H
 
 ## 🖥️ Screenshots
 
-![Calendar Widget Screenshot](https://github.com/reezmahanan/calander/blob/main/Screenshot%202025-09-14%20112604.png)
+![To Do list Screenshot](https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png)
 
 
 ---
