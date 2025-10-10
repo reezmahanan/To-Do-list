@@ -16,14 +16,15 @@ A clean, intuitive Todo List web app for managing daily tasks. Built with pure H
 
 ---
 
-
-
-
-
 ## 🖥️ Screenshots
 
 ![To Do list Screenshot](https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png)
 
+---
+
+## 🌐 Live Demo
+
+Try it instantly: [Live Demo](https://reezmahanan.github.io/To-Do-list/)
 
 ---
 
@@ -170,5 +171,12 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 - [Font Awesome](https://fontawesome.com/) for the icons
 - [Google Fonts](https://fonts.google.com/) for typography inspiration
 - [Flaticon](https://www.flaticon.com/) for the todo list icon
+
+---
+
+## ⭐ Support & Feedback
+
+If you found this project useful or inspiring, please consider giving it a ⭐ star on [GitHub](https://github.com/reezmahanan/To-Do-list)!  
+I appreciate your feedback and support. If you have ideas, suggestions, or encounter issues, feel free to open an [issue](https://github.com/reezmahanan/To-Do-list/issues) — your contribution is always welcome!
 
 ---
