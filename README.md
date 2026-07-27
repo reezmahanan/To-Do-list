@@ -81,7 +81,7 @@ Make sure you have [Node.js](https://nodejs.org/) and `npm` installed.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/reezmahanan/To-Do-list.git
+   git clone https://github.com/reezmahanan/TaskFlow.git
    ```
 2. **Navigate to the project folder:**
    ```bash
@@ -119,4 +119,4 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 
 ## ⭐ Support & Feedback
 
-If you found this upgraded project useful or inspiring, please consider giving it a ⭐ star on [GitHub](https://github.com/reezmahanan/To-Do-list)! Feel free to open a pull request or file issues for feature additions.
+If you found this upgraded project useful or inspiring, please consider giving it a ⭐ star on [GitHub](https://github.com/reezmahanan/TaskFlow.git)! Feel free to open a pull request or file issues for feature additions.
