@@ -85,7 +85,7 @@ Make sure you have [Node.js](https://nodejs.org/) and `npm` installed.
    ```
 2. **Navigate to the project folder:**
    ```bash
-   cd To-Do-list
+   cd TaskFlow
    ```
 3. **Install the dependencies:**
    ```bash
