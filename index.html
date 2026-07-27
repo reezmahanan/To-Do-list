@@ -1,68 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-    <link rel="stylesheet" href="todostyles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow | Advanced To-Do App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="TaskFlow is a premium, feature-rich glassmorphic To-Do list application built with TypeScript, offering calendar, subtasks, due dates, categories, priorities, weekly SVG analytics charts, and recurring tasks.">
 </head>
 <body>
-    <div class="container">
-        <div class="todo-app">
-            <h2>Todo List <img src="https://cdn-icons-png.flaticon.com/512/1950/1950715.png" alt="Todo Icon"></h2>
-            
-            <div class="row">
-                <input type="text" id="task-input" placeholder="Add your task...">
-                <button id="add-button">Add</button>
-            </div>
-            
-            <div class="filters">
-                <div class="filter-group">
-                    <span class="filter active" data-filter="all">All</span>
-                    <span class="filter" data-filter="pending">Pending</span>
-                    <span class="filter" data-filter="completed">Completed</span>
-                </div>
-                <button class="clear-btn">Clear All</button>
-            </div>
-            
-            <ul id="task-list">
-                <!-- Tasks will be added here through JavaScript -->
-                <li class="task">
-                    <input type="checkbox" id="task1">
-                    <label for="task1">
-                        <span class="check-icon"><i class="fas fa-check"></i></span>
-                        Complete the project
-                    </label>
-                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
-                </li>
-                
-                <li class="task completed">
-                    <input type="checkbox" id="task2" checked>
-                    <label for="task2">
-                        <span class="check-icon"><i class="fas fa-check"></i></span>
-                        Read documentation
-                    </label>
-                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
-                </li>
-                
-                <li class="task">
-                    <input type="checkbox" id="task3">
-                    <label for="task3">
-                        <span class="check-icon"><i class="fas fa-check"></i></span>
-                        Prepare presentation
-                    </label>
-                    <span class="delete-btn"><i class="fas fa-trash"></i></span>
-                </li>
-            </ul>
-            
-            <div class="footer">
-                <span id="tasks-counter">3 tasks left</span>
-            </div>
+  
+  <div class="app-container">
+    <!-- Sidebar / Navigation / Stats -->
+    <aside class="sidebar">
+      <header class="app-header">
+        <h1 class="app-title">
+          <i class="fas fa-tasks"></i> TaskFlow
+        </h1>
+        <div class="header-actions">
+          <button id="sound-toggle" class="theme-btn" title="Toggle Sound Chime">
+            <i class="fas fa-volume-up"></i>
+          </button>
+          <button id="theme-toggle" class="theme-btn" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon"></i>
+          </button>
         </div>
-    </div>
-    
-    <script src="script.js"></script>
-</body>
+      </header>
 
+      <!-- Stats Circle Widget -->
+      <section class="stats-card">
+        <div class="progress-circle-container">
+          <svg class="progress-circle" width="80" height="80">
+            <circle class="progress-circle-bg" cx="40" cy="40" r="35"></circle>
+            <circle class="progress-circle-bar" id="stats-bar" cx="40" cy="40" r="35"></circle>
+          </svg>
+          <div class="progress-text" id="stats-percent">0%</div>
+        </div>
+        <div class="stats-info">
+          <span class="stats-title">Progress Tracker</span>
+          <div class="stats-number" id="stats-counter">0 tasks pending</div>
+        </div>
+      </section>
+
+      <!-- Filters Pill Navigation -->
+      <nav class="sidebar-section">
+        <h2 class="section-title">Filters</h2>
+        <div class="filter-pills">
+          <div class="filter-pill active" data-filter="all" id="filter-all">
+            <span class="filter-pill-inner">
+              <i class="fas fa-inbox"></i> All
+            </span>
+            <span class="counter">0</span>
+          </div>
+          <div class="filter-pill" data-filter="pending" id="filter-pending">
+            <span class="filter-pill-inner">
+              <i class="far fa-circle"></i> Pending
+            </span>
+            <span class="counter">0</span>
+          </div>
+          <div class="filter-pill" data-filter="completed" id="filter-completed">
+            <span class="filter-pill-inner">
+              <i class="far fa-check-circle"></i> Completed
+            </span>
+            <span class="counter">0</span>
+          </div>
+          <div class="filter-pill" data-filter="overdue" id="filter-overdue">
+            <span class="filter-pill-inner">
+              <i class="fas fa-exclamation-triangle"></i> Overdue
+            </span>
+            <span class="counter">0</span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Categories Navigation -->
+      <nav class="sidebar-section">
+        <h2 class="section-title">Categories</h2>
+        <div class="category-list">
+          <div class="category-item active" data-category="all" id="cat-all">
+            <span>All Categories</span>
+            <span class="counter">0</span>
+          </div>
+          <div class="category-item" data-category="work" id="cat-work">
+            <span><span class="category-color-dot" style="background: var(--category-work)"></span>Work</span>
+            <span class="counter">0</span>
+          </div>
+          <div class="category-item" data-category="personal" id="cat-personal">
+            <span><span class="category-color-dot" style="background: var(--category-personal)"></span>Personal</span>
+            <span class="counter">0</span>
+          </div>
+          <div class="category-item" data-category="shopping" id="cat-shopping">
+            <span><span class="category-color-dot" style="background: var(--category-shopping)"></span>Shopping</span>
+            <span class="counter">0</span>
+          </div>
+          <div class="category-item" data-category="fitness" id="cat-fitness">
+            <span><span class="category-color-dot" style="background: var(--category-fitness)"></span>Fitness</span>
+            <span class="counter">0</span>
+          </div>
+          <div class="category-item" data-category="other" id="cat-other">
+            <span><span class="category-color-dot" style="background: var(--category-other)"></span>Other</span>
+            <span class="counter">0</span>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <!-- Tabs Navigation -->
+      <nav class="app-tabs">
+        <button class="tab-link active" data-tab="list"><i class="fas fa-list-ul"></i> Tasks List</button>
+        <button class="tab-link" data-tab="calendar"><i class="far fa-calendar-alt"></i> Calendar Grid</button>
+        <button class="tab-link" data-tab="analytics"><i class="fas fa-chart-bar"></i> Productivity Insights</button>
+      </nav>
+
+      <!-- VIEW 1: Tasks List -->
+      <div id="view-list" class="app-view-container active-view">
+        <!-- Search and Sort Controls -->
+        <section class="controls-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search tasks...">
+          </div>
+          <div class="sort-box">
+            <select id="sort-select" class="sort-select" title="Sort Tasks By">
+              <option value="createdAt">Date Created</option>
+              <option value="dueDate">Due Date</option>
+              <option value="priority">Priority</option>
+            </select>
+            <button id="sort-order-btn" class="sort-dir-btn" title="Toggle Sort Order">
+              <i class="fas fa-sort-amount-down"></i>
+            </button>
+          </div>
+        </section>
+
+        <!-- Add New Task Form -->
+        <form id="task-form" class="task-form">
+          <div class="form-row-main">
+            <input type="text" id="task-title-input" class="task-title-input" placeholder="Add a new task..." required autocomplete="off">
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-plus"></i> Add
+            </button>
+          </div>
+          <div class="form-row-meta">
+            <div class="meta-field">
+              <label for="task-priority">Priority</label>
+              <select id="task-priority" class="meta-select">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="meta-field">
+              <label for="task-category">Category</label>
+              <select id="task-category" class="meta-select">
+                <option value="work">Work</option>
+                <option value="personal" selected>Personal</option>
+                <option value="shopping">Shopping</option>
+                <option value="fitness">Fitness</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="meta-field">
+              <label for="task-date">Due Date</label>
+              <input type="date" id="task-date" class="meta-date">
+            </div>
+            <div class="meta-field">
+              <label for="task-recurrence">Repeat</label>
+              <select id="task-recurrence" class="meta-select">
+                <option value="none" selected>None</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
+        <!-- Tasks List Container -->
+        <ul class="task-list" id="task-list">
+          <!-- Renders dynamically -->
+        </ul>
+
+        <!-- Footer Action Row -->
+        <footer class="footer-row">
+          <button id="clear-completed" class="footer-btn danger-btn" title="Delete completed tasks">
+            <i class="fas fa-broom"></i> Clear Completed
+          </button>
+          <div class="io-actions">
+            <button id="export-tasks" class="footer-btn" title="Export tasks to JSON file">
+              <i class="fas fa-download"></i> Export
+            </button>
+            <button id="import-tasks" class="footer-btn" title="Import tasks from JSON file">
+              <i class="fas fa-upload"></i> Import
+            </button>
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+          </div>
+        </footer>
+      </div>
+
+      <!-- VIEW 2: Calendar Grid -->
+      <div id="view-calendar" class="app-view-container">
+        <header class="calendar-header">
+          <button id="prev-month-btn" class="footer-btn"><i class="fas fa-chevron-left"></i> Previous</button>
+          <h3 id="calendar-month-title">July 2026</h3>
+          <button id="next-month-btn" class="footer-btn">Next <i class="fas fa-chevron-right"></i></button>
+        </header>
+        <div class="calendar-weekdays">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+        <div class="calendar-grid" id="calendar-grid">
+          <!-- Days render dynamically -->
+        </div>
+      </div>
+
+      <!-- VIEW 3: Productivity Insights -->
+      <div id="view-analytics" class="app-view-container">
+        <div class="analytics-row">
+          <div class="chart-card">
+            <h4 class="chart-title"><i class="fas fa-chart-line"></i> Tasks Completed (Last 7 Days)</h4>
+            <div class="chart-wrapper">
+              <svg id="weekly-chart" viewBox="0 0 450 200" width="100%" height="200"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="analytics-row-double">
+          <div class="chart-card">
+            <h4 class="chart-title"><i class="fas fa-tags"></i> Category Breakdown</h4>
+            <div class="chart-wrapper">
+              <svg id="category-chart" viewBox="0 0 200 200" width="100%" height="200"></svg>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h4 class="chart-title"><i class="fas fa-exclamation-circle"></i> Priority Distribution</h4>
+            <div class="chart-wrapper">
+              <svg id="priority-chart" viewBox="0 0 200 200" width="100%" height="200"></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Task Detail Edit Sidebar Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <div class="task-details-drawer" id="task-drawer">
+    <header class="drawer-header">
+      <h3>Edit Task Details</h3>
+      <span id="close-drawer" class="close-drawer-btn" title="Close"><i class="fas fa-times"></i></span>
+    </header>
+    <div class="drawer-content">
+      <div class="drawer-field">
+        <label for="drawer-title">Title</label>
+        <input type="text" id="drawer-title" class="drawer-input-title" required autocomplete="off">
+      </div>
+      <div class="drawer-field">
+        <label for="drawer-desc">Description / Notes</label>
+        <textarea id="drawer-desc" class="drawer-textarea" placeholder="Add details or notes..."></textarea>
+      </div>
+      <div class="drawer-row-two">
+        <div class="drawer-field">
+          <label for="drawer-priority">Priority</label>
+          <select id="drawer-priority" class="meta-select">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="drawer-field">
+          <label for="drawer-category">Category</label>
+          <select id="drawer-category" class="meta-select">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="shopping">Shopping</option>
+            <option value="fitness">Fitness</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="drawer-row-two">
+        <div class="drawer-field">
+          <label for="drawer-date">Due Date</label>
+          <input type="date" id="drawer-date" class="meta-date">
+        </div>
+        <div class="drawer-field">
+          <label for="drawer-recurrence">Repeat</label>
+          <select id="drawer-recurrence" class="meta-select">
+            <option value="none">None</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Subtasks Drawer Section -->
+      <section class="subtasks-section">
+        <label>Subtasks</label>
+        <div class="drawer-subtask-form">
+          <input type="text" id="drawer-subtask-input" class="drawer-subtask-input" placeholder="Add a checklist item...">
+          <button id="drawer-subtask-add" class="drawer-subtask-btn" type="button">
+            <i class="fas fa-plus"></i> Add
+          </button>
+        </div>
+        <ul class="drawer-subtasks-list" id="drawer-subtasks">
+          <!-- Subtasks render dynamically -->
+        </ul>
+      </section>
+    </div>
+    <footer class="drawer-footer">
+      <button id="drawer-save" class="drawer-save-btn">
+        <i class="fas fa-save"></i> Save Changes
+      </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>

@@ -1,77 +1,73 @@
-# 📝 Modern Todo List Web Application
+# 📝 TaskFlow | Advanced Glassmorphic To-Do Application
 
-A clean, intuitive Todo List web app for managing daily tasks. Built with pure HTML, CSS, and vanilla JavaScript, it features a modern UI, smooth animations, and a lightweight, maintainable codebase.
+TaskFlow is a premium, feature-rich, and visually stunning productivity dashboard built with **TypeScript** and bundled with **Vite**. 
 
----
-
-## ✨ Features
-
-- **Modern UI Design** – Clean interface with smooth animations and visual feedback
-- **Task Management** – Add, complete, and delete tasks with ease
-- **Task Filtering** – Filter tasks by All, Pending, or Completed status
-- **Bulk Actions** – Clear all tasks with a single click
-- **Task Counter** – Dynamic counter showing number of remaining tasks
-- **Responsive Design** – Works seamlessly on desktop and mobile devices
-- **CSS Variables** – Easily customizable color scheme and styling
+Featuring a modern glassmorphic interface, TaskFlow goes beyond basic lists to provide subtask checklists, dynamic monthly calendars, custom SVG analytics charts, browser desktop notifications, synthesized completion chimes, and LocalStorage data portability.
 
 ---
 
-## 🖥️ Screenshots
+## ✨ Upgraded Features
 
-![To Do list Screenshot](https://github.com/reezmahanan/To-Do-list/blob/main/Screenshot%202025-09-17%20211005.png)
+- **🎨 Modern Glassmorphic Design** – A responsive visual dashboard utilizing HSL tailored colors, smooth blur backdrops (`backdrop-filter`), and fluid micro-animations for Light & Dark modes.
+- **📅 Interactive Calendar Grid** – A monthly grid mapping task deadlines with color-coded priority indicators. Click a day cell to filter tasks due on that day.
+- **📊 Weekly Analytics & SVG Graphs** – Real-time visual insights generated dynamically with inline SVG:
+  - Weekly task completion chart (last 7 days).
+  - Category task volume share.
+  - Priority weight distribution.
+- **🔔 Reminders & Volume Chimes** – Programmatic dual-tone chime sound synthesized on-the-fly using the HTML5 `AudioContext` (no asset downloads required), combined with native browser notifications for tasks due today.
+- **🔁 Recurring/Repeating Tasks** – Set tasks to repeat `Daily`, `Weekly`, or `Monthly`. Completing a recurring task automatically logs it in historical analytics and generates a new copy advanced to the next period.
+- **📂 Data Backup (Import/Export)** – Easily export your task list as a JSON file to transfer devices or secure backup saves, and restore them with schema validation checks.
+- **💾 LocalStorage Persistence** – Automatically saves task databases and mute/theme configurations between page loads.
 
 ---
 
-## 🌐 Live Demo
+## 🖥️ Preview
 
-Try it instantly: [Live Demo](https://reezmahanan.github.io/To-Do-list/)
+![TaskFlow Screenshot](./Screenshot%202025-09-17%20211005.png)
 
 ---
 
 ## 📦 Project Structure
 
 ```
-todo-list/
+To-Do-list/
 │
-├── index.html        # HTML structure and content
-├── styles.css        # All styling and animations
-├── script.js         # JavaScript functionality
-└── screenshots/      # Project images for documentation
+├── public/                 # Static assets
+│   └── todo_background.jpg # Generated workspace backdrop image
+│
+├── src/                    # Source files
+│   ├── main.ts             # Main initialization script
+│   │
+│   ├── types/
+│   │   └── todo.ts         # TypeScript structural interface definitions
+│   │
+│   ├── modules/
+│   │   ├── Storage.ts      # LocalStorage persistence utility
+│   │   ├── TodoService.ts  # Task business logic, analytics calculations & recurrence
+│   │   ├── ThemeManager.ts # Light/Dark mode state controller
+│   │   ├── SoundManager.ts # Synthesizes dual-note success audio bell chime
+│   │   ├── NotificationManager.ts # Fires native desktop reminder alerts
+│   │   └── UI.ts           # DOM renderer, tabs, calendars, and SVG chart graphics
+│   │
+│   └── styles/
+│       └── main.css        # Curated HSL glassmorphism styles and dark overlays
+│
+├── index.html              # Entry point linking to src/main.ts
+├── package.json            # Node project configuration and script commands
+├── tsconfig.json           # strict TypeScript compiler options
+└── README.md               # Project documentation
 ```
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **HTML5** – Semantic structure
-- **CSS3** – Styling, animations, and responsive design
-- **JavaScript** – DOM manipulation and application logic
-- **Font Awesome** – Icons for UI elements
-
----
-
-## 📋 How It Works
-
-### Adding Tasks
-- Type a task in the input field
-- Press Enter or click the "Add" button
-- The task appears in the list with a smooth animation
-
-### Completing Tasks
-- Click the checkbox next to a task to mark it as completed
-- Completed tasks show a checkmark and strikethrough text
-
-### Deleting Tasks
-- Hover over a task to reveal the delete button
-- Click the trash icon to remove the task
-
-### Filtering Tasks
-- Click "All" to show all tasks
-- Click "Pending" to show only uncompleted tasks
-- Click "Completed" to show only completed tasks
-
-### Clearing Tasks
-- Click "Clear All" to remove all tasks (with confirmation)
+- **TypeScript** – Full type-safety, object-oriented module classes, and compiler verification.
+- **Vite** – Instant HMR (Hot Module Replacement) bundler and build compiler.
+- **Web Audio API** – Mathematical oscillator synthesis to play bell chime sounds.
+- **Web Notification API** – Native OS-level alerts.
+- **HTML5 & Vanilla CSS3** – Semantic layout and customized styling variables.
+- **Font Awesome** – UI Icon set vectors.
 
 ---
 
@@ -79,10 +75,9 @@ todo-list/
 
 ### Prerequisites
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Basic understanding of HTML, CSS, and JavaScript for customization
+Make sure you have [Node.js](https://nodejs.org/) and `npm` installed.
 
-### Installation
+### Installation & Run
 
 1. **Clone the repository:**
    ```bash
@@ -92,59 +87,27 @@ todo-list/
    ```bash
    cd To-Do-list
    ```
-3. **Open `index.html` in your browser** to use the application
+3. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
+4. **Start the local development server:**
+   ```bash
+   npm run dev
+   ```
+5. **Open your browser** to the URL provided in the terminal (usually `http://localhost:5173`) to experience TaskFlow.
 
 ---
 
-## 🌐 Deployment
+## ⚙️ Build for Production
 
-This application can be deployed on any web server or static site hosting service:
+To compile and bundle the application for static hosting (outputs to the `dist/` directory):
 
-- GitHub Pages
-- Netlify
-- Vercel
-- Any basic HTTP server
-
----
-
-## 🎨 Customization
-
-### Changing Colors
-
-Modify the color scheme by editing the CSS variables in the `:root` selector in `styles.css`:
-
-```css
-:root {
-    --primary-color:   #8e44ad;   /* Main accent color */
-    --secondary-color: #9b59b6;   /* Secondary accent color */
-    --completed-color: #7f8c8d;   /* Color for completed tasks */
-    --delete-color:    #e74c3c;   /* Delete button color */
-    --background:      #f5f6fa;   /* Page background */
-    --card-bg:         #ffffff;   /* Todo card background */
-    --text-color:      #2c3e50;   /* Main text color */
-    --border-color:    #ecf0f1;   /* Border color */
-}
+```bash
+npm run build
 ```
 
-### Adding Features
-
-Ideas for extending functionality:
-- **Local Storage**: Save tasks between sessions
-- **Due Dates**: Add date picker for task deadlines
-- **Priority Levels**: Allow setting task priority
-- **Categories/Tags**: Group tasks by categories
-- **Drag and Drop**: Reorder tasks with drag and drop
-- **Dark Mode**: Add a toggle for dark/light themes
-
----
-
-## ⚙️ Future Improvements
-
-- Add local storage to persist tasks
-- Implement drag and drop for task reordering
-- Create categories for better task organization
-- Add due dates and priority levels
-- Implement a dark mode theme switch
+The production assets can be deployed onto GitHub Pages, Netlify, Vercel, or any simple static host.
 
 ---
 
@@ -154,29 +117,6 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 👏 Acknowledgements
-
-- [Font Awesome](https://fontawesome.com/) for the icons
-- [Google Fonts](https://fonts.google.com/) for typography inspiration
-- [Flaticon](https://www.flaticon.com/) for the todo list icon
-
----
-
 ## ⭐ Support & Feedback
 
-If you found this project useful or inspiring, please consider giving it a ⭐ star on [GitHub](https://github.com/reezmahanan/To-Do-list)!  
-I appreciate your feedback and support. If you have ideas, suggestions, or encounter issues, feel free to open an [issue](https://github.com/reezmahanan/To-Do-list/issues) — your contribution is always welcome!
-
----
+If you found this upgraded project useful or inspiring, please consider giving it a ⭐ star on [GitHub](https://github.com/reezmahanan/To-Do-list)! Feel free to open a pull request or file issues for feature additions.
