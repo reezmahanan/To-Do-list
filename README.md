@@ -23,7 +23,7 @@ Featuring a modern glassmorphic interface, TaskFlow goes beyond basic lists to p
 
 ## 🖥️ Preview
 
-![TaskFlow Screenshot](./Screenshot%202025-09-17%20211005.png)
+![TaskFlow Screenshot](https://github.com/reezmahanan/TaskFlow/blob/main/Screenshot%20TaskFlow.png)
 
 ---
 
